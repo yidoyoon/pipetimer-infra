@@ -1,0 +1,14 @@
+services:
+  nginx:
+    image: nginx:1.27
+    container_name: nginx-vault
+    env_file:
+      - ./env/.production.env
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/templates/nginx.conf.template
+      - ./certs:/etc/nginx/certs
+    restart: always
+    network_mode: host
